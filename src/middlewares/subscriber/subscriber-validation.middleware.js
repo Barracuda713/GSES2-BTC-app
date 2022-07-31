@@ -31,4 +31,21 @@ const createSubscriberValidMiddleware = (req, res, next) => {
   }
 };
 
-export { createSubscriberValidMiddleware };
+const updateSubscriberValidMiddleware = (req, res, next) => {
+  const data = {...req.body};
+  const getIgnored = () => Object.keys(subscriberModel)
+    .filter(k => !(k in data));
+  
+  try {
+    isSubscriberValid(data, [...getIgnored()]);
+  } catch (err) {
+    next(err);
+  } finally {
+    if (data.email) {
+      req.body.email = req.body.email.toLowerCase();
+    }
+    next();
+  }
+};
+
+export { createSubscriberValidMiddleware, updateSubscriberValidMiddleware };
