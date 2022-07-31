@@ -6,9 +6,11 @@ import { ENV, ExitCode, HttpCode } from './common/enums/enums.js';
 import { errorHandlerMiddleware } from './middlewares/middlewares.js';
 
 import { initDb } from './config/config.js';
+import { initSMTP } from './smtp.transporter.js';
 import { initApi } from './api/api.js';
 
 initDb();
+initSMTP();
 
 const app = express();
 const upload = multer();
