@@ -4,7 +4,8 @@ const responseMiddleware = (req, res, next) => {
       "error": true,
       "message": res.err.message
     })
-  } else {
+  }
+  if (res.data) {
     res.send(res.data);
   }
   next();
