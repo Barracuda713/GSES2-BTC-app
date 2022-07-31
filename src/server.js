@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import multer from 'multer';
 
 import { ENV, ExitCode, HttpCode } from './common/enums/enums.js';
 import { errorHandlerMiddleware } from './middlewares/middlewares.js';
@@ -10,10 +11,12 @@ import { initApi } from './api/api.js';
 initDb();
 
 const app = express();
+const upload = multer();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(upload.array()); 
 
 initApi(app, ENV.APP.API_PATH);
 
