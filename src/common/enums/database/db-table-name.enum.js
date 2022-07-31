@@ -1,5 +1,5 @@
 const DbTableName = {
-  SUBSCRIPTIONS: 'subscriptions'
+  SUBSCRIBERS: 'subscribers'
 };
 
 export { DbTableName };

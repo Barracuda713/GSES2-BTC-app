@@ -1,9 +1,10 @@
-import { Low, JSONFile } from 'lowdb';
+import low from 'lowdb';
+import FileSync from 'lowdb/adapters/FileSync.js';
 
 import { DbTableName } from '../../common/enums/enums.js';
 
-const adapter = new JSONFile('database.json');
-const db = new Low(adapter);
+const adapter = new FileSync('database.json');
+const db = low(adapter);
 
 const initDb = async () => {
   const defaultDb = {};
@@ -11,9 +12,7 @@ const initDb = async () => {
     defaultDb[DbTableName[tableName]] = [];
   }
 
-  await db.read();
-  db.data = db.data || defaultDb;
-  await db.write();
+  db.defaults(defaultDb).write();
 };
 
 export { db, initDb };
