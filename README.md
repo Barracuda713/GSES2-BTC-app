@@ -10,6 +10,9 @@ Case assignment, stage of selection to the Genesis Software Engineering School
 * `npm run start`
 * send requests to http://localhost:3001/
 
+## Postman Collection
+[Link to shared collection](https://www.getpostman.com/collections/c3b2087627206761f4c8)
+
 ## License
 This project is licensed under the terms of the **MIT** license.
 
