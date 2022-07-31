@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 
-import { ENV, ExitCode } from './common/enums/enums.js';
+import { ENV, ExitCode, HttpCode } from './common/enums/enums.js';
 import { errorHandlerMiddleware } from './middlewares/middlewares.js';
 
 import { initDb } from './config/config.js';
@@ -19,7 +19,7 @@ initApi(app, ENV.APP.API_PATH);
 
 app.use((req, res, next) => {
 	const err = new Error('Not Found');
-	err.status = 404;
+	err.status = HttpCode.NOT_FOUND;
 	next(err);
 });
 app.use(errorHandlerMiddleware);

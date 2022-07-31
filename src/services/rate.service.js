@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { PUBLIC_API_CRYPTO } from '../common/constants/api.constants.js';
-import { ENV } from '../common/enums/enums.js';
+import { ENV, HttpMethod } from '../common/enums/enums.js';
 
 const {
   routes: {
@@ -16,7 +16,7 @@ class RateService {
     convert
   }) {
     return axios({
-      method: 'get',
+      method: HttpMethod.GET,
       url: getCryptoPriceURL,
       params: {
         symbol,
