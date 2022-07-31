@@ -1,4 +1,4 @@
-import { HttpCode } from '../common/enums/enums.js';
+import { ExceptionMessage, HttpCode } from '../common/enums/enums.js';
 import { subscriberModel } from '../data/models/models.js';
 import { subscriberRepository } from '../data/repositories/repositories.js';
 
@@ -11,16 +11,16 @@ class SubscriberService {
     const s = subscriberRepository.getOne({id});
     if (!s) throw {
       status: HttpCode.NOT_FOUND,
-      message: 'Subscriber not found.'
+      message: ExceptionMessage.SUBSCRIBER_NOT_FOUND
     }
     return s;
   }
 
   addSubscriber(subscriber) {
-    const es = subscriberRepository.getOne(s => (s.email === subscriber.email.toLowerCase()));
+    const es = subscriberRepository.getOne(s => (s.email === subscriber.email));
     if (es) throw {
       status: HttpCode.CONFLICT,
-      message: 'Subscriber exists.'
+      message: ExceptionMessage.SUBSCRIBER_EXISTS
     }
 
     const keys = Object.keys(subscriberModel);
@@ -41,14 +41,14 @@ class SubscriberService {
     
     if (Object.keys(s).length === 0) throw {
       status: HttpCode.BAD_REQUEST,
-      message: `Update object is empty.`
+      message: ExceptionMessage.EMPTY_UPDATE_DATA
     }
 
     if ('email' in s) {
-      const es = subscriberRepository.getOne(s => (s.email === subscriber.email.toLowerCase()));
+      const es = subscriberRepository.getOne(s => (s.email === subscriber.email));
       if (es && (es.id !== id)) throw {
         status: HttpCode.BAD_REQUEST,
-        message: `Subscriber with such data exists.`
+        message: ExceptionMessage.SUBSCRIBER_WITH_DATA_EXISTS
       }
     }
 
