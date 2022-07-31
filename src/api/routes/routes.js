@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { ApiPath } from '../../common/enums/enums.js';
 import { PUBLIC_API_CRYPTO } from '../../common/constants/api.constants.js';
 import { rateService } from '../../services/rate.service.js';
+import { subscriberService } from '../../services/subscriber.service.js';
 import { responseMiddleware } from '../../middlewares/middlewares.js';
 import { queryParserHelper } from '../../helpers/helpers.js';
 
@@ -21,6 +22,18 @@ router.route(ApiPath.RATE)
       res.err = err
     })
     .finally(next)
+  });
+
+router.route(ApiPath.SUBSCRIBE)
+  .post((req, res, next) => {
+    try {
+      const subscriber = subscriberService.addSubscriber(req.body);
+      res.data = subscriber;
+    } catch (err) {
+      res.err = err;
+    } finally {
+      next();
+    }
   });
 
 router.use(responseMiddleware);
