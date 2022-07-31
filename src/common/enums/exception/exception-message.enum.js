@@ -1,6 +1,7 @@
 const ExceptionMessage = {
   UNKNOWN_ERROR: 'Unknown error occurred.',
   EMPTY_UPDATE_DATA: 'Update data is empty.',
+  SUBSCRIBERS_NOT_FOUND: 'No subscribers yet.',
   SUBSCRIBER_NOT_FOUND: 'Subscriber not found.',
   SUBSCRIBER_EXISTS: 'Subscriber exists.',
   SUBSCRIBER_WITH_DATA_EXISTS: 'Subscriber with such data exists.',
