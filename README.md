@@ -1,6 +1,10 @@
 # GSES2 BTC app
 Case assignment, stage of selection to the Genesis Software Engineering School
 
+## Before installation
+* get personal free **CoinMarketCap API KEY** [here](https://pro.coinmarketcap.com/signup/?plan=0)
+* add it to `.env`
+
 ## Installation
 * `npm i`
 * `npm run start`
