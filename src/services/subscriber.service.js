@@ -56,7 +56,14 @@ class SubscriberService {
   }
 
   deleteSubscriber(id) {
-    return subscriberRepository.delete(id);
+    const s = subscriberRepository.delete(id);
+    
+    if (s.length === 0) throw {
+      status: HttpCode.NOT_FOUND,
+      message: ExceptionMessage.SUBSCRIBER_NOT_FOUND
+    }
+
+    return s;
   }
 }
 
